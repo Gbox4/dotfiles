@@ -4,11 +4,6 @@
 
 (cat ~/.cache/wal/sequences &)
 # If not running interactively, don't do anything
-
-export SPOTIPY_CLIENT_ID=e7dcc7eef6ad4ea18f3fdc933aad5ff3
-export SPOTIPY_CLIENT_SECRET=dac370ea7c534a13ac3a73a7c15e8396
-export YOUTUBE_DEV_KEY=AIzaSyAGkKh9bipeNYO_RoYxFj5xbmgGJwR8q14
-
 fortune | cowsay | lolcat
 echo
 
