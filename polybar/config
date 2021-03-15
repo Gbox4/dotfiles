@@ -1,0 +1,373 @@
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+include-file = ~/.config/polybar/glyphs.ini
+
+[colors]
+background = ${xrdb:color0}
+background-alt = ${xrdb:color8}
+foreground = ${xrdb:color7}
+foreground-alt = ${xrdb:color15}
+primary = ${xrdb:color5}
+secondary = ${xrdb:color4}
+disabled = #707070
+enabled = #97b1bf
+;${xrdb:color3}
+alert = #ff7024
+
+orange = #f07e14
+
+shade1 = #303030
+shade2 = #283593
+shade3 = #893410
+shade4 = #9c4116
+shade5 = #897910
+shade6 = #631089
+shade7 = #226832
+shade8 = ${xrdb:color0}
+
+[bar/main]
+width = 100%
+height = 20
+;fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = FiraCode Nerd Font:size=10;2
+font-1 = FiraCode Nerd Font:size=21;4
+
+; font-0 = "Iosevka Nerd Font:pixelsize=10;3"
+; font-1 = "Iosevka Nerd Font:style=Medium:size=22;5"
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+wm-restack = bspwm
+
+
+
+[bar/top]
+inherit = bar/main
+fixed-center = false
+module-margin-left = 0
+module-margin-right = 0
+
+padding-right = 0
+padding-left = 0
+
+modules-left = pad-shade8 bspwm left2
+;modules-center = xwindow
+modules-right = right7 eth wlan right6 filesystem right5 memory right4 cpu right3 temperature right2 battery right1 date
+
+tray-position = right
+tray-padding = 2
+
+[bar/bottom]
+inherit = bar/main
+
+bottom = true
+padding-left = 1
+module-margin-left = 0
+module-margin-right = 0
+
+modules-left = mpd
+modules-center = xwindow
+modules-right = right7 pkgupdates right6 xbacklight right5 pulseaudio right4 xkeyboard
+
+
+
+[bar/top2]
+inherit = bar/top
+monitor = HDMI1
+
+modules-left = pad-shade8 bspwm left2
+;modules-center = xwindow
+modules-right = right7 eth wlan right6 filesystem right5 memory right4 cpu right3 temperature right2 battery right1 date
+
+
+[bar/bottom2]
+inherit = bar/bottom
+monitor = HDMI1
+
+modules-left = mpd
+modules-center = xwindow
+modules-right = right7 pkgupdates right6 hdmitext right5 pulseaudio right4 xkeyboard
+
+[module/hdmitext]
+type=custom/text
+content = HDMI
+content-background = ${colors.shade6}
+
+[module/xwindow]
+type = internal/xwindow
+format = <label>
+label = %title%
+label-maxlen = 100
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format = <label-layout><label-indicator>
+format-background = ${colors.shade4}
+
+label-layout = " %layout% "
+label-layout-padding = 0
+label-layout-margin = 0
+
+label-indicator-padding = 0
+label-indicator-margin = 1
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted =  %used%
+label-mounted-background = ${colors.shade6}
+
+label-unmounted = %mountpoint% not mounted
+label-unmounted-background = ${colors.shade6}
+
+[module/bspwm]
+type = internal/bspwm
+
+format-background = ${colors.shade8}
+
+label-focused = %name%
+label-focused-foreground = ${colors.orange}
+;label-focused
+;label-focused-background = ${colors.background-alt}
+;label-focused-padding = 1
+
+label-occupied = %name%
+label-occupied-foreground = ${colors.foreground}
+;label-occupied-padding = 1
+
+label-urgent = %name%!
+label-urgent-background = ${colors.alert}
+;label-urgent-padding = 1
+
+label-empty = %name%
+label-empty-foreground = ${colors.disabled}
+;label-empty-padding = 1
+
+label-separator = 
+label-separator-font = 2
+label-separator-foreground = ${colors.orange}
+label-separator-padding = 1
+
+
+
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song> <label-time>  <icon-prev> <toggle> <icon-next>
+
+label-song =  %title%
+label-song-foreground = ${colors.orange}
+;${colors.primary}
+
+label-time-foreground = ${colors.secondary}
+
+icon-prev = 玲
+icon-play = 契
+icon-pause = 
+icon-next = 怜
+
+label-song-maxlen = 50
+label-song-ellipsis = true
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <ramp> <label>
+format-background = ${colors.shade6}
+
+ramp-0 = ""
+ramp-1 = ""
+ramp-2 = ""
+ramp-3 = ""
+
+label = %percentage%%
+
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+
+format = <label>
+format-background = ${colors.shade4}
+label = " %percentage%%"
+
+
+[module/memory]
+type = internal/memory
+interval = 2
+
+format = <label>
+format-background = ${colors.shade5}
+label = " %percentage_used%%"
+
+
+[module/wlan]
+type = internal/network
+interface = wlp0s20f3
+interval = 1.0
+
+accumulate-stats = true
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%  %upspeed%  %downspeed%
+ramp-signal-0 = 直
+
+format-disconnected = <label-disconnected>
+label-disconnected = 睊  No connection
+
+format-connected-background = ${colors.shade7}
+format-disconnected-background = ${colors.shade7}
+
+[module/eth]
+type = internal/network
+interface = enp0s20f0u4u4
+interval = 1.0
+
+format-connected = <label-connected>
+label-connected = " "
+format-connected-background = ${colors.shade7}
+
+
+[module/date]
+type = internal/date
+
+; Seconds to sleep between updates
+interval = 1.0
+
+; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+;;date = %Y-%m-%d%
+
+; Optional time format
+time = " %I:%M %p "
+
+; if `date-alt` or `time-alt` is defined, clicking
+; the module will toggle between formats
+;;date-alt = %A, %d %B %Y
+time-alt = " %a, %d %b %Y "
+
+; Available tokens:
+;   %date%
+;   %time%
+; Default: %date%
+label = %time%
+
+format= <label>
+format-background = ${colors.shade1}
+
+
+#[module/alsa]
+[module/pulseaudio]
+#type = internal/alsa
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+format-volume-background = ${colors.shade5}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+ramp-headphones-0 = 
+
+label-muted = ﱝ sound muted
+label-muted-background = ${colors.shade5}
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 99
+
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%% %time%
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%% %time%
+
+label-full =   %percentage%% Full
+label-full-foreground = #4abf52
+label-full-background = ${colors.shade2}
+
+format-charging-background = ${colors.shade2}
+format-discharging-background = ${colors.shade2}
+
+
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
+
+animation-charging-foreground = #4abf52
+animation-charging-framerate = 750
+
+ramp-capacity-0 = " "
+ramp-capacity-0-foreground = #f50a4d
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp><label>
+format-background = ${colors.shade3}
+format-warn = <ramp><label-warn>
+format-warn-foreground = ${colors.alert}
+format-warn-background = ${colors.shade3}
+
+label = "%temperature-c%"
+label-warn = "%temperature-c%"
+
+ramp-0 = " "
+ramp-1 = " "
+ramp-2 = " "
+
+[module/pad-shade8]
+type = custom/text
+content = " "
+content-background = ${colors.shade8}
+
+[module/pkgupdates]
+type = custom/script
+
+; Available tokens:
+;   %counter%
+; Command to be executed (using "/bin/sh -c [command]")
+exec = /home/gabe/bin/updatescount
+
+; Seconds to sleep between updates
+; Default: 5 (0 if `tail = true`)
+interval = 10
+
+format = <label>
+format-background = ${colors.shade7}
+
+label = " %output%"
+
+
+[settings]
+screenchange-reload = true

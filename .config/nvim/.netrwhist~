@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
-let g:netrw_dirhist_5='/home/gabe/.config/mpd'
-let g:netrw_dirhist_4='/home/gabe/.config/sxhkd'
-let g:netrw_dirhist_3='/home/gabe/.config/kitty'
-let g:netrw_dirhist_2='/usr/share/xsessions'
-let g:netrw_dirhist_1='/home/gabe/.config/awesome/themes/default'

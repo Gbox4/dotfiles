@@ -1,0 +1,11 @@
+configuration {
+ // modi: "window,drun,ssh,combi";
+ modi: "drun,ssh,window";
+ font: "FiraCode Nerd Font 12";
+ //combi-modi: "window,drun,ssh";
+ width: 50;
+ lines: 15;
+ icon-theme: "Papirus";
+ show-icons: true;
+}
+@import "~/.cache/wal/colors-rofi-dark"
