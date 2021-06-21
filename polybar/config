@@ -98,9 +98,29 @@ modules-left = mpd
 modules-center = xwindow
 modules-right = right7 pkgupdates right6 hdmitext right5 pulseaudio right4 xkeyboard
 
+
+[bar/top3]
+inherit = bar/top
+monitor = DP1
+
+modules-left = pad-shade8 bspwm left2
+;modules-center = xwindow
+modules-right = right7 eth wlan right6 filesystem right5 memory right4 cpu right3 temperature right2 battery right1 date
+
+
+[bar/bottom3]
+inherit = bar/bottom
+monitor = DP1
+
+modules-left = mpd
+modules-center = xwindow
+modules-right = right7 pkgupdates right6 hdmitext right5 pulseaudio right4 xkeyboard
+
+
+
 [module/hdmitext]
 type=custom/text
-content = HDMI
+content = "﴿ HDMI"
 content-background = ${colors.shade6}
 
 [module/xwindow]
@@ -235,7 +255,7 @@ format-disconnected-background = ${colors.shade7}
 
 [module/eth]
 type = internal/network
-interface = enp0s20f0u4u4
+interface = enp0s20f0u2u2u2
 interval = 1.0
 
 format-connected = <label-connected>
