@@ -25,6 +25,7 @@ else
 	[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 fi
 
+source ~/.envvars
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
@@ -73,7 +74,8 @@ alias pacs='pacman -Qe | grep -i'
 alias seba='source env/bin/activate'
 alias key='xbindkeys --key'
 alias ev='nvim ~/.config/nvim/init.vim'
-alias wttr='curl wttr.in/Honolulu'
+alias wttr='curl wttr.in'
+alias wttrs='curl "wttr.in/?0"'
 alias updateweb='rsync -uvrP --delete-after ~/website/ root@gabebanks.net:/var/www/gabebanks/'
 alias mu='sudo mount /dev/sda1 /mnt'
 alias umu='sudo umount /mnt'
@@ -81,13 +83,21 @@ alias hs='history | grep -i'
 alias ytdl='youtube-dl -x --audio-format mp3 --audio-quality 0 -o "%(autonumber)s %(title)s.%(ext)s"'
 alias please='sudo $(fc -ln -1)'
 alias anaconda="export PATH=~/anaconda3/bin:$PATH"
+alias update-front="ssh hooks@chordhosting.com './buildhook'"
+alias rp='cd ~/documents/repos'
+alias repos='cd ~/documents/repos'
+alias en='sudo systemctl enable --now'
+alias pac='sudo pacman'
+alias radarr='sudo systemctl start radarr'
+alias lidarr='sudo systemctl start lidarr'
+alias ccolor='kitty @ set-colors ~/.config/kitty/default_colors.conf'
 
 myip() {
 	ip addr | grep "inet " | grep -v " 127." | awk '{print $2}'
 }
 
 see() {
-	zathura $1 & disown
+	feh $1 & disown
 }
 
 spdl() {
@@ -95,12 +105,25 @@ spdl() {
 }
 
 out() {
-        "$@" & disown
+    "$@" & disown
+}
+banner() {
+    echo $1 | figlet -f 3d -c -t | lolcat -a -d 2
+}
+nvim() {
+    kitty @ set-colors ~/.config/kitty/nvim_colors.conf
+    kitty @ set-background-opacity 1 
+    /usr/bin/nvim $1
+    kitty @ set-colors ~/.colors/active/active.kitty
+    kitty @ set-background-opacity 0.8
 }
 
-
-fortune | cowsay | lolcat
-echo
+# This line (wal -R) doesn't play nice with some wallpapers
+#(cat ~/.cache/wal/sequences &)
+if [ -z $SCRIPTCALL ]; then
+	fortune | cowsay | lolcat
+	echo
+fi
 
 
 # >>> conda initialize >>>

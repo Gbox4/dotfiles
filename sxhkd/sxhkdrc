@@ -16,7 +16,7 @@ super + Tab
 	bspc desktop -f next.local
 
 super + ctrl + Delete
-	~/.config/polybar.gh/hack/scripts/powermenu.sh
+	~/.config/polybar/powermenu.sh
 
 super + x
 	code
@@ -44,7 +44,7 @@ super + Return
 
 # program launcher
 super + @space
-	rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar.gh/hack/scripts/rofi/launcher.rasi
+	~/.config/polybar/launch_rofi.sh
 	#rofi -show
 
 # make sxhkd reload its configuration files:
