@@ -21,6 +21,9 @@ super + ctrl + Delete
 super + x
 	code
 
+super + alt + s
+	/home/gabe/bin/startup/start
+
 super + n
 	kitty -e ncmpcpp
 
@@ -42,10 +45,15 @@ super + b
 super + Return
 	kitty
 
+super + shift + Return
+    kitty -o font_size=12
+
 # program launcher
 super + @space
 	~/.config/polybar/launch_rofi.sh
-	#rofi -show
+
+super + e
+	~/.config/polybar/launch_rofi_emoji.sh
 
 # make sxhkd reload its configuration files:
 super + Escape

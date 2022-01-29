@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+bspc node -v 0 350
+bspc node -d I
+ncmpcpp -s visualizer
+
+$SHELL

@@ -59,4 +59,5 @@ bspc config gapless_monocle      true
 #bspc rule -a Screenkey manage=off
 bspc rule -a feh state=floating center=true rectangle=1600x900+0+0
 
-/home/gabe/bin/startup/start
+#obs &
+#sleep 3

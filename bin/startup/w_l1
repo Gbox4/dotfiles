@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+bspc node -v -550 -100
+bspc node -d I
+neofetch
+
+$SHELL

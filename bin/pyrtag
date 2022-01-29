@@ -1,0 +1,33 @@
+#!/usr/bin/python
+# Imports
+from optparse import OptionParser
+import os
+
+# Parsing options and arguments
+usage = "Usage: pyrtag [DIRECTORY]"
+parser = OptionParser(usage=usage)
+
+
+parser.add_option("--album", action="store", type="string", dest="album", help="the album title")
+parser.add_option("--artist", action="store", type="string", dest="artist", help="the album artist")
+parser.add_option("--year", action="store", type="string", dest="year", help="the album's publication year")
+
+(options, args) = parser.parse_args()
+if len(args) != 1:
+    parser.error("incorrect number of arguments, please supply a directory")
+
+album = options.album if options.album else str(input("Enter the album title:\n"))
+artist = options.artist if options.artist else str(input("Enter the artist:\n"))
+year = options.year if options.year else str(input("Enter the publication year:\n"))
+
+os.chdir(args[0])
+files = sorted(os.listdir())
+total = len(files)
+
+for file in files:
+  #print(repr(file))
+  title = " ".join(file.split(" ")[1:]).replace(".mp3", "").replace("'", "\'")
+  track = int(file.split(" ")[0])
+  cmd= f"id3tag -a \"{artist}\" -A \"{album}\" -y \"{year}\" -t {track} -s \"{title}\" -T \"{total}\" \"{file}\""
+  #print(cmd)
+  os.system(cmd)

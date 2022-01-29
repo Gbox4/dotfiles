@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+bspc node -d I --follow
+
+for i in {1..30}
+do
+  bspc node -z top 0 -10
+  bspc node -z bottom 0 10
+  sleep 0.01
+done
+
+for i in {1..60}
+do
+  bspc node -z left -10 0
+  bspc node -z right 10 0
+  sleep 0.01
+done
+
+sleep 0.5
+echo "\n\n\n\n\n\n"
+echo "WELCOME\nBACK\nGABE" | figlet -f 3d -c -t | lolcat -a -d 2
+
+sleep 2
+
+bspc node -d II --follow
+sleep 0.4
+clear
+
+for i in {1..30}
+do
+  bspc node -z top_left -10 -5
+  bspc node -z bottom_right 10 5
+  sleep 0.01
+done
+
+bspc node -t tiled
+sleep 8
+
+cbonsai -l -i
+$SHELL
+

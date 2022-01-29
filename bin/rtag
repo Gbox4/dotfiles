@@ -1,0 +1,19 @@
+#!/bin/sh
+
+[ -z "$1" ] && printf "Please supply a directory.\\n" && exit
+
+echo "Enter the album title:"; read -r album
+
+echo "Enter the artist:"; read -r artist
+
+echo "Enter the publication year:"; read -r year
+
+albumdir="$1"
+total=$(ls $1 | wc -l)
+
+for file in $albumdir/*; do
+	title=$(echo $file | rev | cut -d"/" -f1 | rev | cut -d"." -f1 | cut -d" " -f2-)
+	track=$(echo $file | rev | cut -d"/" -f1 | rev | cut -d"." -f1 | cut -d" " -f1)
+	id3tag -a "$artist" -A "$album" -y "$year" -t $track -s "$title" -T "$total" "$file"
+	#echo "$track $title $artist $album $year"
+done

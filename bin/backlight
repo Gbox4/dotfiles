@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ "$1" = "set" ]
+then
+  echo $2 > /sys/class/backlight/intel_backlight/brightness
+elif [ "$1" = "change" ]
+then
+  echo $(($(cat /sys/class/backlight/intel_backlight/brightness) + $2)) > /sys/class/backlight/intel_backlight/brightness
+fi

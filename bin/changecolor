@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -z $1 ]; then
+	echo "No arguments supplied"
+	exit 0
+fi
+
+feh --bg-fill /home/gabe/documents/pics/wallpapers/$1.png
+
+rm /home/gabe/.colors/active/*
+cp /home/gabe/.colors/$1/* /home/gabe/.colors/active
+
+xrdb ~/.Xresources
+
+bspc wm -r

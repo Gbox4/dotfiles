@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+bspc node -v 500 -200
+bspc node -d I
+#cbonsai -l -i
+curl "wttr.in/?0"
+
+echo
+echo
+$SHELL

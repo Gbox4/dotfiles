@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+for i in {1..30}
+do
+  bspc node -z top 0 -10
+  bspc node -z bottom 0 10
+  sleep 0.01
+done
+
+for i in {1..60}
+do
+  bspc node -z left -10 0
+  bspc node -z right 10 0
+  sleep 0.01
+done
+
+sleep 0.5
+ncmpcpp
+$SHELL

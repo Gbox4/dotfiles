@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+bspc node -v 850 0
+bspc node -d I
+cmatrix
+
+$SHELL

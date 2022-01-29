@@ -1,0 +1,34 @@
+#!/usr/bin/python
+from optparse import OptionParser
+import os
+
+# Parsing options and arguments
+usage = "Usage: album-dl [YOUTUBE URL]"
+parser = OptionParser(usage=usage)
+
+parser.add_option("--album", action="store", type="string", dest="album", help="the album title")
+parser.add_option("--artist", action="store", type="string", dest="artist", help="the album artist")
+parser.add_option("--year", action="store", type="string", dest="year", help="the album's publication year")
+parser.add_option("-f", action="store_true", dest="force")
+
+(options, args) = parser.parse_args()
+if len(args) != 1:
+    parser.error("incorrect number of arguments, please supply a URL")
+
+url = args[0]
+
+album = options.album if options.album else str(input("Enter the album title:\n"))
+artist = options.artist if options.artist else str(input("Enter the artist:\n"))
+year = options.year if options.year else str(input("Enter the publication year:\n"))
+
+#os.system(f"mkdir '{album}'")
+os.mkdir(album)
+os.chdir(album)
+os.system(f'youtube-dl -x --audio-format mp3 --audio-quality 0 -o "%(autonumber)s %(title)s.%(ext)s" {url}')
+
+if not options.force:
+    input("\n\n Download complete.\nNow is the last chance to rename any files, makes sure they are the correct name as they will be tagged after.\nPress ENTER when all files are named correctly.")
+
+os.system(f"~/bin/pyrtag --album \"{album}\" --artist \"{artist}\" --year \"{year}\" .")
+
+print("Done!")

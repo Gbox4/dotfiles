@@ -1,0 +1,6 @@
+#/bin/zsh
+
+bspc rule -a kitty state=floating center=true rectangle=100x100+0+0
+kitty /home/gabe/bin/startup/w_ncmpcpp & disown
+sleep 0.5
+bspc rule -r kitty
