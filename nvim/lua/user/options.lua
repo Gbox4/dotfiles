@@ -44,3 +44,8 @@ end
 --vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 --vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+
+-- Vim jump to the last position when reopening a file
+vim.cmd [[if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif]]
