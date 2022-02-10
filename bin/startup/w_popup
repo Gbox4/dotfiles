@@ -34,7 +34,7 @@ do
 done
 
 bspc node -t tiled
-sleep 8
+sleep 4
 
 cbonsai -l -i
 $SHELL

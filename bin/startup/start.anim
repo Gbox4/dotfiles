@@ -5,15 +5,15 @@ export SCRIPTCALL='true'
 bspc rule -a kitty state=floating center=true rectangle=200x800+0+0
 kitty /home/gabe/bin/startup/w_r1 & disown
 
-sleep 0.2
+sleep 0.5
 bspc rule -a kitty state=floating center=true rectangle=1800x260+0+0
 kitty /home/gabe/bin/startup/w_b1 & disown
 
-sleep 0.2
+sleep 0.5
 bspc rule -a kitty state=floating center=true rectangle=750x450+0+0
 kitty /home/gabe/bin/startup/w_l1 & disown
 
-sleep 0.2
+sleep 0.5
 #bspc rule -a kitty state=floating center=true rectangle=600x500+0+0
 bspc rule -a kitty state=floating center=true rectangle=450x250+0+0
 kitty /home/gabe/bin/startup/w_r2 & disown
@@ -29,27 +29,50 @@ sleep 8
 
 # Now on screen II
 
-bspc node -p east -o 0.25
+bspc node -p east -o 0.95
 sleep 0.2
 kitty /home/gabe/bin/startup/w_pac & disown
 sleep 0.2
 
-bspc node -p south -o 0.8
+for i in {1..135}    
+do    
+  bspc node -z left -10 0    
+  sleep 0.01
+done    
+
+bspc node -p south -o 0.9
 sleep 0.2
 kitty htop & disown
 sleep 0.2
 
-bspc node -p east -o 0.7
+for i in {1..30}
+do
+  bspc node -z top 0 -4
+  sleep 0.01
+done
+
+
+bspc node -p east -o 0.9
 sleep 0.2
 kitty tty-clock -C 5 & disown
 sleep 0.2
 
-bspc node -f next.local.!hidden.window
+for i in {1..30}
+do
+  bspc node -z left -8 0
+  sleep 0.01
+done
 
+
+bspc node -f next.local.!hidden.window
 sleep 0.2
-bspc node -p south -o 0.5
+bspc node -p south -o 0.9
 sleep 0.2
 kitty speedometer -r wlp0s20f3 -t wlp0s20f3 & disown
-sleep 0.5
+for i in {1..60}
+do
+  bspc node -z top 0 -8
+  sleep 0.01
+done
 
 bspc node -f next.local.!hidden.window    
