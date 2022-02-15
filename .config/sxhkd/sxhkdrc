@@ -29,9 +29,9 @@ super + n
 
 #restart polybar
 super + p
-	autorandr --change
-	#pkill polybar; polybar top &; polybar bottom
-	#bash ~/.config/polybar/launch.sh --hack
+    pkill polybar; polybar top &; polybar bottom &
+#bash ~/.config/polybar/launch.sh --hack
+	#autorandr --change
 
 # take scrot
 Print

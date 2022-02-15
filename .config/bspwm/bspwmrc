@@ -1,6 +1,4 @@
-#! /bin/sh
-
-
+#! /bin/bash
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
@@ -37,7 +35,7 @@ else
   bspc config bottom_padding 20
 fi
 
-bspc config border_width         1
+bspc config border_width         0
 bspc config window_gap          16
 bspc config border_radius	6
 
@@ -61,3 +59,10 @@ bspc rule -a feh state=floating center=true rectangle=1600x900+0+0
 
 #obs &
 #sleep 3
+
+#/home/gabe/bin/startup/start
+if [[ -f ~/startup.lock ]]; then
+    /home/gabe/bin/startup/start
+fi
+
+rm -f ~/startup.lock
