@@ -120,12 +120,15 @@ eval $(thefuck --alias)
 
 bindkey -s '^O' 'ranger^M'
 
-alias ls='ls --color=auto'
-alias ll='ls -la'
-alias lr='ls -ltr'
+unalias l
+alias ls='exa'
+alias ll='exa --long --header --icons --git'
+alias la='exa --long --header --icons --git --all'
+alias lr='exa --reverse --sort=time'
+alias c='clear'
+alias doc='cd ~/documents'
 alias ep='nvim ~/.zshrc'
 alias epv='nvim ~/.config/nvim/init.vim'
-alias sp='source ~/.zshrc'
 alias pacs='pacman -Qe | grep -i'
 alias seba='source env/bin/activate'
 alias key='xbindkeys --key'
@@ -137,15 +140,26 @@ alias umu='sudo umount /mnt'
 alias hs='history | grep -i'
 alias ytdl='youtube-dl -x --audio-format mp3 --audio-quality 0 -o "%(autonumber)s %(title)s.%(ext)s"'
 alias please='sudo $(fc -ln -1)'
-alias anaconda="export PATH=~/anaconda3/bin:$PATH"
 alias update-front="ssh hooks@chordhosting.com './buildhook'"
-alias rp='cd ~/documents/repos'
-alias repos='cd ~/documents/repos'
 alias en='sudo systemctl enable --now'
 alias pac='sudo pacman'
-alias radarr='sudo systemctl start radarr'
-alias lidarr='sudo systemctl start lidarr'
+#alias radarr='sudo systemctl start radarr'
+#alias lidarr='sudo systemctl start lidarr'
 alias ccolor='kitty @ set-colors ~/.config/kitty/default_colors.conf'
+alias gtree='git log --oneline --decorate --all --graph'
+
+
+rp() {
+    cd ~/documents/repos/$1
+}
+
+cfg() {
+  cd ~/.config/$1
+}
+
+op() {
+  nvim ~/documents/repos/$1
+}
 
 myip() {
 	ip addr | grep "inet " | grep -v " 127." | awk '{print $2}'

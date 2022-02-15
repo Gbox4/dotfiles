@@ -1,14 +1,13 @@
-#! /bin/bash
+#! /bin/sh
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 pkill polybar
+pkill stretchly
 
 polybar top -c ~/.config/polybar/config.ini &
 polybar bottom -c ~/.config/polybar/config.ini &
 stretchly &
-
-
 
 if [ -z "$(xrandr -q | grep -w connected | grep HDMI1)" ]
 then
@@ -35,7 +34,7 @@ else
   bspc config bottom_padding 20
 fi
 
-bspc config border_width         0
+bspc config border_width         1
 bspc config window_gap          16
 bspc config border_radius	6
 
@@ -58,11 +57,10 @@ bspc config gapless_monocle      true
 bspc rule -a feh state=floating center=true rectangle=1600x900+0+0
 
 #obs &
-#sleep 3
-
-#/home/gabe/bin/startup/start
 if [[ -f ~/startup.lock ]]; then
     /home/gabe/bin/startup/start
 fi
 
 rm -f ~/startup.lock
+
+bspc rule -a kitty state=tiled center=true rectangle=1000x800+0+0

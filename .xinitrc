@@ -1,3 +1,5 @@
+#!/bin/bash
+
 autorandr --change
 #wal -R
 ~/.fehbg &
@@ -9,5 +11,8 @@ pkill mpd
 mpd /home/gabe/.config/mpd/mpd.conf
 picom &
 sxhkd &
-exec /home/gabe/bin/bspwm-rounded
-#exec bspwm
+#exec /home/gabe/bin/bspwm-rounded
+touchegg &
+
+touch ~/startup.lock
+exec bspwm
