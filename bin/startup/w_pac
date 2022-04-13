@@ -1,4 +1,4 @@
 #!/bin/zsh
-#sudo pacman -Syu
-tstock gme -w -y 34
+yay -Syu
+#tstock gme -w -y 34
 $SHELL

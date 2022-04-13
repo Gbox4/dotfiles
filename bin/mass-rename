@@ -5,9 +5,9 @@ import os
 files = sorted(os.listdir())
 
 for file in files:
-  guess = " ".join([ fn[0].upper() + fn[1:] for fn in file.split("-") ])
-  correct = input(f"\n\n{file}\nEnter the correct name ({guess}): ")
-  new = correct if correct else guess
+    guess = " ".join([ fn[0].upper() + fn[1:] for fn in file.split("-") ])
+    correct = input(f"\n\n{file}\nEnter the correct name ({guess}): ")
+    new = correct if correct else guess
 
-  cmd= f'mv {file} "{new}"'
-  os.system(cmd)
+    cmd= f'mv {file} "{new}"'
+    os.system(cmd)

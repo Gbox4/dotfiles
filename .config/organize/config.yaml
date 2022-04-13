@@ -1,0 +1,44 @@
+rules:
+  - name: "clean downloads"
+    locations: "~/downloads"
+    filters:
+      - lastmodified:
+          days: 30
+    actions:
+      - move: "~/trash/"
+
+  - name: "iolani reports"
+    locations: "~/downloads/"
+    subfolders: true
+    filters:
+      - extension: pdf
+      - filecontent: '.*Iolani.*(?P<date>\d{4}-\d{4}(\s\D+){1,2}\d)'
+    actions:
+      - shell: filename=$(echo '{filecontent.date}') && mv '{path}' "/home/gabe/gbanks/02_SCHOOL/$filename\ iolani-report.pdf"
+
+  - name: "chase deposits"
+    locations: "~/downloads/"
+    subfolders: true
+    filters:
+      - extension: pdf
+      - filecontent: 'Deposit cash or checks.*(?P<date>\d\d\/\d\d\/\d\d\d\d$)'
+    actions:
+      - shell: filename=$(echo '{filecontent.date}' | sed 's/\//-/g') && mv '{path}' "/home/gabe/gbanks/03_FINANCE/$filename\ chase-deposit.pdf"
+
+  - name: "chase statements"
+    locations: "~/downloads/"
+    subfolders: true
+    filters:
+      - extension: pdf
+      - filecontent: 'JPMorgan Chase Bank.*(?P<date>[A-Z]\w+ \d\d, \d\d\d\d through \w+ \d\d, \d\d\d\d)'
+    actions:
+      - shell: filename=$(echo '{filecontent.date}') && mv '{path}' "/home/gabe/gbanks/03_FINANCE/$filename\ chase-statement.pdf"
+
+  - name: "jpmorgan statements"
+    locations: "~/downloads/"
+    subfolders: true
+    filters:
+      - extension: pdf
+      - filecontent: '(?P<date>[A-Z]\w+ \d\d - \w+ \d\d, \d\d\d\d).*Investment Statement'
+    actions:
+      - shell: filename=$(echo '{filecontent.date}') && mv '{path}' "/home/gabe/gbanks/03_FINANCE/$filename\ jpmorgan-statement.pdf"

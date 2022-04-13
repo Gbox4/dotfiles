@@ -13,6 +13,10 @@ picom &
 sxhkd &
 #exec /home/gabe/bin/bspwm-rounded
 touchegg &
+nm-applet &
 
-touch ~/startup.lock
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
+
+#touch ~/startup.lock
 exec bspwm

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+bspc wm -r
+wal -R
