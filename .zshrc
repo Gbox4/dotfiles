@@ -1,6 +1,11 @@
 # Sick programs:
 # Zeal - offline docs
 # ncdu - ncurses du
+# radarr - run 'sudo systemctl start radarr' then access http://localhost:7878
+# bazarr - run 'sudo systemctl start bazarr' then access http://redbook:6767/
+# spotdl - spotdl --path-template '{album}/{title}.{ext}' <spotify URL>
+# access to encrypted files: run ecryptfs-mount-private and ecryptfs-umount-private 
+# jellyfin - use systemctl to start jellyfin for the media server
 
 
 if [ -z $SCRIPTCALL ]; then
@@ -43,6 +48,8 @@ bindkey -s '^O' 'ranger^M'
 # alias lr='exa --reverse --sort=time'
 # alias lar='exa -la --sort=modified'
 
+alias windows='sudo grub-reboot Windows && sudo reboot'
+
 alias t='tree'
 alias c='clear'
 
@@ -68,7 +75,12 @@ alias hs='history | grep -i'
 alias ytdl='youtube-dl -x --audio-format mp3 --audio-quality 0 -o "%(autonumber)s %(title)s.%(ext)s"'
 alias please='sudo $(fc -ln -1)'
 #alias update-front="ssh hooks@chordhosting.com './buildhook'"
+
 alias en='sudo systemctl enable --now'
+alias dis='sudo systemctl disable'
+alias start='sudo systemctl start'
+alias stop='sudo systemctl stop'
+
 #alias radarr='sudo systemctl start radarr'
 #alias lidarr='sudo systemctl start lidarr'
 #alias ccolor='kitty @ set-colors ~/.config/kitty/default_colors.conf'
