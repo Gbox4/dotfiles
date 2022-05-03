@@ -50,6 +50,11 @@ bindkey -s '^O' 'ranger^M'
 
 alias windows='sudo grub-reboot Windows && sudo reboot'
 
+alias wifi='nmcli device wifi'
+alias conn='nmcli connection'
+alias vpnon='nmcli connection up vpnhome'
+alias vpnoff='nmcli connection down vpnhome'
+
 alias t='tree'
 alias c='clear'
 
@@ -86,11 +91,13 @@ alias stop='sudo systemctl stop'
 #alias ccolor='kitty @ set-colors ~/.config/kitty/default_colors.conf'
 alias gtree='git log --oneline --decorate --all --graph'
 
+alias wallpaper='feh --bg-fill /home/gabe/documents/pics/wallpapers/mountains.jpg'
+
 alias pics='cd ~/pics'
 alias scrot='cd ~/pics/screenshots'
 alias down='cd ~/downloads'
 alias doc='cd ~/documents'
-alias gbanks='cd ~/gbanks'
+alias gbanks='cd ~/Private/gbanks'
 rp() {cd ~/repos/$1}
 cfg() {cd ~/.config/$1}
 op() {nvim ~/repos/$1}
